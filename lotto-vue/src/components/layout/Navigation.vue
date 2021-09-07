@@ -23,7 +23,8 @@ export default {
 </script> 
 <style>
 .navigationbar {
-  padding-left: 15px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .menu {
