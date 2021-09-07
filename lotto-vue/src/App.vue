@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Navigation />
     <div id="content" class="content">
       <router-view></router-view>
     </div>
@@ -8,14 +8,28 @@
 </template>
 
 <script>
-import Header from "./components/layout/Header.vue";
+import Navigation from "./components/layout/Navigation.vue";
 export default {
-  name: "App",
+  name: "app",
   components: {
-    Header,
-  },
+    Navigation
+  }
 };
 </script>
 
 <style>
+@font-face {
+  font-family: 'GowunDodum-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'GowunDodum-Regular';
+}
+
+html body {
+  background-color: #718093;
+}
 </style>

@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h1>Check</h1>
+    <h1>AR</h1>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  name: 'augmentmenu'
+};
 </script> 

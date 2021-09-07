@@ -18,6 +18,20 @@
 </template>
 <script>
 export default {
-  name: "header",
+  name: "navigation"
 };
 </script> 
+<style>
+.navigationbar {
+  padding-left: 15px;
+}
+
+.menu {
+  text-decoration: none;
+  color: #7f8c8d;
+}
+
+.menu:hover {
+  color: seashell;
+}
+</style>
