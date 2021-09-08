@@ -1,6 +1,6 @@
 <template>
-  <div class="historytable">
-    <b-table striped hover :items="items" :fields="fields" dark></b-table>
+  <div>
+    <b-table class="historytable" striped hover :items="items" :fields="fields" dark></b-table>
   </div>
 </template>
 <script>
@@ -69,8 +69,8 @@ export default {
   },
 };
 </script>
-<style>
-.content {
+<style scoped>
+.historytable {
   margin: 0px;
   font-size: 12px;
   text-align: center;

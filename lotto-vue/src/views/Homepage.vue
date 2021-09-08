@@ -114,7 +114,7 @@ export default {
   }
 }
 </script> 
-<style>
+<style scoped>
 .content {
     background-color: #718093;
     text-align: center;
