@@ -28,7 +28,7 @@ export default {
   },
   created() {
     this.items.length = 53;
-    const URI = "http://112.169.11.3:30080/data/lottodata.php";
+    const URI = "https://hyeokjoon.com/data/lottodata.php";
     axios.get(URI)
     .then((result) => {
       this.datas = result.data.datas;
