@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="searched">
     <b-table class="historytable" striped hover :items="items" :fields="fields" dark></b-table>
   </div>
 </template>
@@ -9,6 +9,7 @@ export default {
   name: 'historypage',
   data() {
     return {
+      searched: false,
       datas: [],
       drwNo: [],
       drwNoDate: [],
@@ -65,6 +66,7 @@ export default {
           "1등 당첨금": winAmnt
         });
       }
+      this.searched = true;
     })
   },
 };

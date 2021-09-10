@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="content">
+    <div class="content" v-if="searched">
         <div class="recentLotto">
             <span id="drwNo">{{drwNo}}</span><span id="blue">회</span>
             <span> 당첨번호</span>
@@ -41,6 +41,7 @@ export default {
   name: 'homepage',
   data() {
     return {
+      searched: false,
       datas: [],
       drwNo: "500",
       drwNoDate: "2000-01-01",
@@ -78,6 +79,7 @@ export default {
         this.numbers = [this.drwtNo1, this.drwtNo2, this.drwtNo3, this.drwtNo4, this.drwtNo5, this.drwtNo6, this.bnusNo];
         this.setCircleColor();
         this.setWinPrice();
+        this.searched = true;
       })
   },
   methods: {
