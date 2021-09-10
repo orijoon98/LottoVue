@@ -1,27 +1,40 @@
 <template>
   <div>
-    <div>
-      <p class="decode-result">Last result: <b>{{ result }}</b></p>
+    <div v-if="searching">
+      <p class="decode-result">Last result: <b>{{ url }}</b></p>
 
-      <qrcode-capture @decode="onDecode"/>
+      <qrcode-stream @decode="onDecode" @init="onInit" />
+    </div>
+    <div v-if="searched">
+      <h1>{{url}}</h1>
     </div>
   </div>
 </template>
 <script>
-import { QrcodeCapture } from 'vue-qrcode-reader'
+import { QrcodeStream } from 'vue-qrcode-reader'
 export default {
   name: 'qrcodemenu',
-  components: { QrcodeCapture },
+  components: { QrcodeStream },
   data () {
     return {
-      result: ''
+      searching: true,
+      searched: false,
+      url: ""
     }
   },
   methods: {
     onDecode (result) {
-      console.log("in");
-      this.result = result;
-      console.log(this.result);
+      this.url = result;
+      this.searching = false;
+      this.searched = true;
+    },
+
+    async onInit (promise) {
+      try {
+        await promise
+      } catch (error) {
+        console.log(this.error);
+      }
     }
   },
 };
