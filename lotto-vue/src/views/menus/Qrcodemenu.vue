@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="searching">
-      <qrcode-stream @decode="onDecode" @init="onInit" />
+      <div class="qrtag">
+        <qrcode-stream @decode="onDecode" @init="onInit" />
+      </div>
       <div id="qrtext">
         <span> QR 코드를 촬영하세요. </span>
       </div>
@@ -47,6 +49,16 @@
     </div>
     <div class="selectmenu">
       <b-button block id="check" @click="router.push('check')">뒤로 가기</b-button><br>
+    </div>
+    <div class="alert-container">
+      <b-button id="error1" v-b-modal.err1 ref="showError1">업데이트오류</b-button>
+      <b-modal title="오류" id="err1" ok-only ok-title="확인" hide-header-close @ok="handleOK">
+        <p class="my-4">아직 업데이트가 안된 회차입니다.</p>
+      </b-modal>
+      <b-button id="error2" v-b-modal.err2 ref="showError2">유효기간오류</b-button>
+      <b-modal title="오류" id="err2" ok-only ok-title="확인" hide-header-close @ok="handleOK">
+        <p class="my-4">유효기간 1년이 지난 회차입니다.</p>
+      </b-modal>  
     </div>
   </div>
 </template>
@@ -119,6 +131,9 @@ export default {
         console.log(error);
       }
     },
+    handleOK() {
+      this.$router.go();
+    },
     setCircleColor() {
         var i = 0;
         for(var number of this.numbers) {
@@ -152,6 +167,12 @@ export default {
     decodeQR() {
       var str = this.url;
       str = str.replace(/[^0-9]/g, '');
+      if(parseInt(str.substr(0, 4)) > this.drwNo[52]) {
+        this.$refs.showError1.click();
+      }
+      else if(parseInt(str.substr(0, 4)) < this.drwNo[0]) {
+        this.$refs.showError2.click();
+      }
       this.tIndex = 52 - (parseInt(this.drwNo[52]) - parseInt(str.substr(0, 4)));
       var cnt = Math.floor((str.length - 4) / 12);
       for(var i=0;i<cnt;i++) {
@@ -221,6 +242,13 @@ export default {
 };
 </script> 
 <style scoped>
+.qrtag {
+  width: 50%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #qrtext {
   text-align: center;
   font-size: 30px;
@@ -343,5 +371,9 @@ td {
 
 .green {
     background-color: #2ecc71;
+}
+
+#error1, #error2 {
+  display: none;
 }
 </style>
