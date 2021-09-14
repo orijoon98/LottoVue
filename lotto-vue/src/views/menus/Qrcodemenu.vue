@@ -2,7 +2,7 @@
   <div>
     <div v-if="searching">
       <div class="qrtag">
-        <qrcode-stream @decode="onDecode" @init="onInit" />
+        <qrcode-stream :track="paintOutline" @decode="onDecode" @init="onInit" />
       </div>
       <div id="qrtext">
         <span> QR 코드를 촬영하세요. </span>
@@ -58,6 +58,10 @@
       <b-button id="error2" v-b-modal.err2 ref="showError2">유효기간오류</b-button>
       <b-modal title="오류" id="err2" ok-only ok-title="확인" hide-header-close @ok="handleOK">
         <p class="my-4">유효기간 1년이 지난 회차입니다.</p>
+      </b-modal>
+      <b-button id="error3" v-b-modal.err3 ref="showError3">QR코드오류</b-button>
+      <b-modal title="오류" id="err3" ok-only ok-title="확인" hide-header-close @ok="handleOK">
+        <p class="my-4">잘못된 QR 코드입니다.</p>
       </b-modal>  
     </div>
   </div>
@@ -128,7 +132,23 @@ export default {
       try {
         await promise
       } catch (error) {
-        console.log(error);
+        this.$refs.showError3.click();
+      }
+    },
+    paintOutline (detectedCodes, ctx) {
+      for (const detectedCode of detectedCodes) {
+        const [ firstPoint, ...otherPoints ] = detectedCode.cornerPoints
+
+        ctx.strokeStyle = "red";
+
+        ctx.beginPath();
+        ctx.moveTo(firstPoint.x, firstPoint.y);
+        for (const { x, y } of otherPoints) {
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(firstPoint.x, firstPoint.y);
+        ctx.closePath();
+        ctx.stroke();
       }
     },
     handleOK() {
@@ -167,6 +187,9 @@ export default {
     decodeQR() {
       var str = this.url;
       str = str.replace(/[^0-9]/g, '');
+      if(str.length != 74) {
+        this.$refs.showError3.click();
+      }
       if(parseInt(str.substr(0, 4)) > this.drwNo[52]) {
         this.$refs.showError1.click();
       }
@@ -373,7 +396,7 @@ td {
     background-color: #2ecc71;
 }
 
-#error1, #error2 {
+#error1, #error2, #error3 {
   display: none;
 }
 </style>
