@@ -266,10 +266,12 @@ export default {
 </script> 
 <style scoped>
 .qrtag {
-  width: 50%;
+  width: 70%;
   height: 50%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 #qrtext {
