@@ -12,35 +12,36 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: "history",
-  routes: [{
+  routes: [
+    {
       path: "/",
-      component: Homepage
+      component: Homepage,
     },
     {
       path: "/check",
-      component: Checkpage
+      component: Checkpage,
     },
     {
       path: "/onhand",
-      component: Onhandmenu
+      component: Onhandmenu,
     },
     {
       path: "/qrcode",
-      component: Qrcodemenu
+      component: Qrcodemenu,
     },
     {
       path: "/augment",
-      component: Augmentmenu
+      component: Augmentmenu,
     },
     {
       path: "/history",
-      component: Historypage
+      component: Historypage,
     },
     {
       path: "/setting",
-      component: Settingpage
-    }
-  ]
+      component: Settingpage,
+    },
+  ],
 });
 
-export default router; 
+export default router;
