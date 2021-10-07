@@ -62,7 +62,7 @@ export default {
     };
   },
   created() {
-    const URI = "https://hyeokjoon.com/data/lottodata.php";
+    const URI = "https://hyeokjoon.com/getdata";
     axios.get(URI).then((result) => {
       this.datas = result.data.datas;
       this.drwNo = this.datas[52].drwNo;
