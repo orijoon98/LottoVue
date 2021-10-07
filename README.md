@@ -3,7 +3,7 @@
 로또 당첨번호가 업데이트 되면 항상 네이버에서 로또 당첨번호 조회를 검색하거나 동행복권 홈페이지에서 당첨번호 결과를 확인했는데 이에 불편함을 느끼고 당첨번호 조회, 결과 확인을 할 수 있는 웹을 개발 해보기로 했다.
 
 ## 사이트
-[https://hyeokjoon.com/lotto](https://hyeokjoon.com/lotto)
+[https://hyeokjoon.com](https://hyeokjoon.com)
 
 ## 기능
 
